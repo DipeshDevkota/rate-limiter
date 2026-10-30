@@ -1,10 +1,10 @@
 import express from "express";
 import { connectRedis, redisClient } from "./redis.js";
-
+import { rateLimiter } from "./rateLimiter.js";
 const app = express();
 const PORT = 3000;
 
-// app.use();
+app.use(rateLimiter);
 
 app.get("/", (req, res) => {
   res.json({
